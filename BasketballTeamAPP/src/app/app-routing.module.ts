@@ -5,6 +5,7 @@ import { FutureFixturesComponent } from './components/future-fixtures/future-fix
 import { LoginComponent } from './components/login/login.component';
 import { PastFixturesComponent } from './components/past-fixtures/past-fixtures.component';
 import { RegisterComponent } from './components/register/register.component';
+import { ViewTeamComponent } from './components/view-team/view-team.component';
 import { AuthGuard } from './guards/auth.guard';
 import { ManagerGuard } from './guards/manager.guard';
 
@@ -13,7 +14,8 @@ const routes: Routes = [
   {path: 'register', component: RegisterComponent},
   {path: 'addFixture', component: AddFixtureComponent, canActivate: [ManagerGuard, AuthGuard]},
   {path: 'futureFixtures', component: FutureFixturesComponent, canActivate: [AuthGuard]},
-  {path: 'playedFixtures', component: PastFixturesComponent, canActivate: [AuthGuard]}
+  {path: 'playedFixtures', component: PastFixturesComponent, canActivate: [AuthGuard]},
+  {path: 'viewTeam', component: ViewTeamComponent, canActivate: [AuthGuard]}
 ];
 
 @NgModule({

@@ -12,13 +12,17 @@ export class PastFixturesComponent implements OnInit {
 
   fixtures: Fixture[];
   memberList: Member[];
+  show: boolean = false;
   
   constructor(private dataService: DataService) {
     this.fixtures = [];
     this.memberList = [];
     //Get played fixtures
     this.dataService.getPlayedFixtures()
-    .then((fixtures: Fixture[]) => this.fixtures = fixtures)
+    .then((fixtures: Fixture[]) => {
+      console.log(fixtures);
+      this.fixtures = fixtures;
+    })
     .catch((err) => alert("Error in get played"));
 
     //Get members
@@ -36,5 +40,9 @@ export class PastFixturesComponent implements OnInit {
     this.dataService.enterCourtFee(courtFee)
       .then(() => alert("Court Fee successfully entered"))
       .catch((err) => alert(err));
+  }
+
+  changeShow(){
+    this.show = !this.show;
   }
 }

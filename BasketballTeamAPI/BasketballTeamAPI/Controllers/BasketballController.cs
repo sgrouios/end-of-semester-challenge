@@ -27,6 +27,33 @@ namespace BasketballTeamAPI.Controllers
             return await _context.Members.ToListAsync();
         }
 
+        [HttpGet("getMembersCourtFee")]
+        public async Task<IActionResult> GetMembersCourtFee()
+        {
+            var members = await _context.Members
+                .Select(m => new MemberFee
+                {
+                    MemberId = m.MemberId,
+                    Name = m.Name,
+                    AmountPaid = 0.00,
+                    UserType = m.UserType
+                })
+                .ToListAsync();
+
+            foreach (var member in members)
+            {
+                var fixturesPaid = await _context.CourtFees.Where(cf => cf.PayeeId == member.MemberId).ToListAsync();
+                var amountPaid = 0.00;
+                foreach(var fixture in fixturesPaid)
+                {
+                    amountPaid += fixture.AmountPaid;
+                }
+                member.AmountPaid = amountPaid;
+            }
+
+            return Ok(members);
+        }
+
         [HttpPost("login")]
         public async Task<IActionResult> Login(Login details)
         {
@@ -97,7 +124,24 @@ namespace BasketballTeamAPI.Controllers
         [HttpGet("playedFixtures")]
         public async Task<ActionResult<IEnumerable<Fixture>>> GetPlayedFixtures()
         {
-            return await _context.Fixtures.Where(fix => fix.FixtureDate < DateTime.Now).ToListAsync();
+            return await _context.Fixtures.Where(fix => fix.FixtureDate < DateTime.Now)
+                .Select(f => new Fixture
+                {
+                    FixtureId = f.FixtureId,
+                    FixtureDate = f.FixtureDate,
+                    Venue = f.Venue,
+                    CourtFees = _context.CourtFees.Where(cf => cf.FixtureId == f.FixtureId)
+                    .Select(cfo => new CourtFee
+                    {
+                        CourtFeeId = cfo.CourtFeeId,
+                        AmountPaid = cfo.AmountPaid,
+                        PayeeId = cfo.PayeeId,
+                        FixtureId = cfo.FixtureId,
+                        Payee = _context.Members.Where(p => p.MemberId == cfo.PayeeId).FirstOrDefault()
+                    })
+                    .ToList()
+                })
+                .ToListAsync();
         }
 
         [HttpGet("futureFixtures")]

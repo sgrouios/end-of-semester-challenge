@@ -1,13 +1,17 @@
-<table *ngIf="this.fixtures; else noDisplay" style="width: 50%;">
+<table *ngIf="this.fixtures" style="width: fit-content;">
     <tr>
         <th>Id</th>
         <th>Date</th>
         <th>Venue</th>
+        <th [ngClass]="this.show ? 'show': 'hide'">Court Fee</th>
     </tr>
-    <tr *ngFor="let fixture of fixtures">
+    <tr *ngFor="let fixture of fixtures" (click)="changeShow()">
         <td>{{fixture.fixtureId }}</td>
         <td>{{fixture.fixtureDate | date: "d-MMM-yyy, h:mm a"}}</td>
         <td>{{fixture.venue}}</td>
+        <div *ngFor="let courtFee of fixture.courtFees" [ngClass]="this.show ? 'show': 'hide'">
+            <td>Payee: {{courtFee.payee.name}}<br>Amount paid: ${{courtFee.amountPaid}}</td>
+        </div>
     </tr>
 </table>
 
@@ -24,7 +28,3 @@
     <input type="number" name ="amountPaid" ngModel #amountPaidField="ngModel" min="0" required>
     <button type="submit">Enter Court Fee</button>
 </form>
-
-<ng-template #noDisplay>
-    <h1>There's no upcoming coffee dates</h1>
-</ng-template>

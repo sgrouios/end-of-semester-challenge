@@ -1,4 +1,4 @@
-<table *ngIf="this.fixtures; else noDisplay" style="width: 50%;">
+<table *ngIf="this.fixtures" style="width: 50%;">
     <tr>
         <th>Id</th>
         <th>Date</th>
@@ -16,7 +16,3 @@
     <input type="number" id="fixtureId" [(ngModel)]="fixtureId" min="1">
     <button type="submit" (click)="deleteFixture()">Delete Fixture</button>
 </div>
-
-<ng-template #noDisplay>
-    <h1>There's no future Fixtures</h1>
-</ng-template>

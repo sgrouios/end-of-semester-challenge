@@ -10,6 +10,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { AddFixtureComponent } from './components/add-fixture/add-fixture.component';
 import { FutureFixturesComponent } from './components/future-fixtures/future-fixtures.component';
 import { PastFixturesComponent } from './components/past-fixtures/past-fixtures.component';
+import { ViewTeamComponent } from './components/view-team/view-team.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { PastFixturesComponent } from './components/past-fixtures/past-fixtures.
     RegisterComponent,
     AddFixtureComponent,
     FutureFixturesComponent,
-    PastFixturesComponent
+    PastFixturesComponent,
+    ViewTeamComponent
   ],
   imports: [
     BrowserModule,

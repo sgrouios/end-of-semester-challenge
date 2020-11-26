@@ -20,21 +20,3 @@ td {
     margin: auto;
     padding-top: 100px;
 }
-
-.container input, button{
-    width: 200px;
-    font-size: 20px;
-}
-
-.container select {
-    width: 200px;
-    font-size: 20px;
-}
-
-.show {
-    display: block;
-}
-
-.hide {
-    display: none;
-}

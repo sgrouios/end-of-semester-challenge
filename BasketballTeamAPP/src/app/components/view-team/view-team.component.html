@@ -1,0 +1,14 @@
+<table *ngIf="this.members;" style="width: fit-content;">
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Total Amount Paid</th>
+        <th>User Type</th>
+    </tr>
+    <tr *ngFor="let member of members">
+        <td>{{member.memberId }}</td>
+        <td>{{member.name}}</td>
+        <td>${{member.amountPaid}}</td>
+        <td>{{member.userType}}</td>
+    </tr>
+</table>
