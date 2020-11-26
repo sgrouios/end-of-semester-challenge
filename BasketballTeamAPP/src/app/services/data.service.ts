@@ -9,8 +9,8 @@ import { Member } from '../models/member';
 })
 export class DataService {
 
-  //apiURL: string = "http://stephenchallenge-env.eba-ccnvpz2m.us-east-1.elasticbeanstalk.com/api/";
-  apiURL: string = "https://localhost:5001/api/";
+  apiURL: string = "http://stephenchallenge-env.eba-ccnvpz2m.us-east-1.elasticbeanstalk.com/api/";
+  //apiURL: string = "https://localhost:5001/api/";
   member: BehaviorSubject<Member>;
   userType: string;
 

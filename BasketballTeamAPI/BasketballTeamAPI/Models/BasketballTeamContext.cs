@@ -25,7 +25,8 @@ namespace BasketballTeamAPI.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Server=.\\SQLExpress;Database=BasketballTeam;Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer("Server=challengedb.cavd7ezcvwdx.us-east-1.rds.amazonaws.com, 1433;Database=BasketballTeam;User=admin;Password=heyletmein05");
+                //optionsBuilder.UseSqlServer("Server=.\\SQLExpress;Database=BasketballTeam;Trusted_Connection=True;");
             }
         }
 

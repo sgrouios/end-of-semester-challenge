@@ -18,7 +18,8 @@ namespace BasketballTeamAPI
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<BasketballTeamContext>(opt => opt.UseSqlServer("Server=.\\SQLExpress;Database=BasketballTeam;Trusted_Connection=True;"));
+            services.AddDbContext<BasketballTeamContext>(opt => opt.UseSqlServer("Server=challengedb.cavd7ezcvwdx.us-east-1.rds.amazonaws.com, 1433;Database=BasketballTeam;User=admin;Password=heyletmein05"));
+            //services.AddDbContext<BasketballTeamContext>(opt => opt.UseSqlServer("Server=.\\SQLExpress;Database=BasketballTeam;Trusted_Connection=True;"));
             services.AddControllers();
             services.AddCors(options =>
             {
