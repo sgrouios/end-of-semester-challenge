@@ -27,6 +27,31 @@ namespace BasketballTeamAPI.Controllers
             return await _context.Members.ToListAsync();
         }
 
+        [HttpGet("getPendingMembers")]
+        public async Task<ActionResult<IEnumerable<Member>>> GetPendingMembers()
+        {
+            return await _context.Members.Where(pm => pm.Pending == true).ToListAsync();
+        }
+
+        [HttpPut("approveMember")]
+        public async Task<IActionResult> ApproveMember(ApproveMember memberId)
+        {
+            try{
+                var member = await _context.Members.Where(m => m.MemberId == memberId.MemberId).FirstOrDefaultAsync();
+                member.Pending = false;
+
+                _context.Members.Update(member);
+                await _context.SaveChangesAsync();
+
+                return Ok();
+
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
+
         [HttpGet("getMembersCourtFee")]
         public async Task<IActionResult> GetMembersCourtFee()
         {

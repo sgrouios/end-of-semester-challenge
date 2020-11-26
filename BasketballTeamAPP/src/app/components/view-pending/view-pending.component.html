@@ -1,0 +1,23 @@
+<table  style="width: fit-content;">
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Pending</th>
+        <th>User Type</th>
+    </tr>
+    <tr *ngFor="let member of pendingMembers">
+        <td>{{member.memberId }}</td>
+        <td>{{member.name}}</td>
+        <td>${{member.email}}</td>
+        <td>{{member.pending}}</td>
+        <td>{{member.userType}}</td>
+    </tr>
+</table>
+
+<form #approveForm="ngForm" class="container" (ngSubmit)="approveMember(approveForm.value)" ngNativeValidate>
+    <label for="memberId">Member Id to approve</label>
+    <input type="number" name="memberId" ngModel #memberIdField="ngModel" min="1" required />
+    <button type="submit">Approve Member</button>
+</form>
+

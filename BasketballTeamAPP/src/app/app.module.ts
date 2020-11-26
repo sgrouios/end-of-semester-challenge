@@ -11,6 +11,7 @@ import { AddFixtureComponent } from './components/add-fixture/add-fixture.compon
 import { FutureFixturesComponent } from './components/future-fixtures/future-fixtures.component';
 import { PastFixturesComponent } from './components/past-fixtures/past-fixtures.component';
 import { ViewTeamComponent } from './components/view-team/view-team.component';
+import { ViewPendingComponent } from './components/view-pending/view-pending.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ViewTeamComponent } from './components/view-team/view-team.component';
     AddFixtureComponent,
     FutureFixturesComponent,
     PastFixturesComponent,
-    ViewTeamComponent
+    ViewTeamComponent,
+    ViewPendingComponent
   ],
   imports: [
     BrowserModule,

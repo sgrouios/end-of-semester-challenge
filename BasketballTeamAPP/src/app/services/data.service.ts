@@ -103,6 +103,31 @@ export class DataService {
     })
   }
 
+  getPendingMembers() {
+    return new Promise((resolve, reject) => {
+      this._http.get<Member[]>(this.apiURL + "Basketball/getPendingMembers").subscribe(
+        res => {
+          resolve(res);
+        },
+        err => {
+          reject(err.error);
+        });
+    })
+  }
+
+  approvePendingMember(id) {
+    let memberId = {memberId: id};
+    return new Promise((resolve, reject) => {
+      this._http.put(this.apiURL + "Basketball/approveMember/", memberId).subscribe(
+        res => {
+          resolve(res);
+        },
+        err => {
+          reject(err.error);
+        });
+    })
+  }
+
   getMembersCourtFee() {
     return new Promise((resolve, reject) => {
       this._http.get<MemberFee[]>(this.apiURL + "Basketball/getMembersCourtFee").subscribe(
