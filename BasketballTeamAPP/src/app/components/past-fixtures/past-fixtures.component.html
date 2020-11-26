@@ -1,0 +1,30 @@
+<table *ngIf="this.fixtures; else noDisplay" style="width: 50%;">
+    <tr>
+        <th>Id</th>
+        <th>Date</th>
+        <th>Venue</th>
+    </tr>
+    <tr *ngFor="let fixture of fixtures">
+        <td>{{fixture.fixtureId }}</td>
+        <td>{{fixture.fixtureDate | date: "d-MMM-yyy, h:mm a"}}</td>
+        <td>{{fixture.venue}}</td>
+    </tr>
+</table>
+
+<form *ngIf="this.fixtures.length != 0" class="container" #courtFeeForm="ngForm" (ngSubmit)="enterCourtFee(courtFeeForm.form.value)" ngNativeValidate>
+    <label for="fixtureId">Select Fixture Id</label>
+    <input type="number" name="fixtureId" ngModel #fixtureIdField="ngModel" min="0" required>
+
+    <label for="payeeId">Select Member Paying</label>
+    <select name="payeeId" ngModel #payeeIdField="ngModel" required>
+        <option *ngFor="let members of memberList" [value]="members.memberId" >{{members.name}}</option>
+    </select>
+
+    <label for="amountPaid">Select Court Fee</label>
+    <input type="number" name ="amountPaid" ngModel #amountPaidField="ngModel" min="0" required>
+    <button type="submit">Enter Court Fee</button>
+</form>
+
+<ng-template #noDisplay>
+    <h1>There's no upcoming coffee dates</h1>
+</ng-template>

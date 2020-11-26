@@ -1,0 +1,7 @@
+<form #fixtureForm="ngForm" class="container" (ngSubmit)="addFixture(fixtureForm.form.value)" ngNativeValidate>
+    <label for="fixtureDate">Enter Date and Time</label>
+    <input type="datetime-local" name="fixtureDate" ngModel #fixtureDateField="ngModel" required>
+    <label for="venue">Enter Venue</label>
+    <input type="text" name="venue" ngModel #venueField="ngModel" required>
+    <button type="submit">Add Fixture</button>
+</form>

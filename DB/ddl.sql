@@ -1,0 +1,35 @@
+DROP TABLE IF EXISTS CourtFee;
+
+DROP TABLE IF EXISTS Fixture;
+
+DROP TABLE IF EXISTS Member;
+
+CREATE TABLE Member(
+    MemberID INT IDENTITY(1,1) NOT NULL,
+    [Name] NVARCHAR(50) NOT NULL,
+    Email NVARCHAR(50) NOT NULL,
+    [Password] NVARCHAR(50) NOT NULL,
+    UserType NVARCHAR(50) NOT NULL,
+    Pending BIT NOT NULL,
+    CONSTRAINT PK_Member PRIMARY KEY (MemberID)
+);
+
+CREATE TABLE Fixture(
+    FixtureID INT IDENTITY(1,1) NOT NULL,
+    FixtureDate DATETIME NOT NULL,
+    Venue NVARCHAR(50) NOT NULL,
+    CONSTRAINT PK_Fixture PRIMARY KEY (FixtureID)
+);
+
+CREATE TABLE CourtFee(
+    CourtFeeID INT IDENTITY(1,1) NOT NULL,
+    AmountPaid FLOAT NOT NULL,
+    PayeeID INT NOT NULL,
+    FixtureID INT NOT NULL,
+    CONSTRAINT PK_CourtFee PRIMARY KEY (CourtFeeID),
+    CONSTRAINT FK_CourtFee_Member FOREIGN KEY (PayeeID) REFERENCES Member,
+    CONSTRAINT FK_CourtFee_Fixture FOREIGN KEY (FixtureID) REFERENCES Fixture
+);
+
+
+

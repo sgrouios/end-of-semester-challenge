@@ -1,0 +1,7 @@
+<form #loginForm="ngForm" class="container" (ngSubmit)="login(loginForm.form.value)" ngNativeValidate>
+    <label for="email">E-mail</label>
+    <input type="text" name="email" ngModel #emailField="ngModel" required />
+    <label for="password">Password</label>
+    <input type="password" name="password" ngModel #passwordField="ngModel" required>
+    <button type="submit">Login</button>
+</form>

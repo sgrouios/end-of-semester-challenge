@@ -1,0 +1,22 @@
+<table *ngIf="this.fixtures; else noDisplay" style="width: 50%;">
+    <tr>
+        <th>Id</th>
+        <th>Date</th>
+        <th>Venue</th>
+    </tr>
+    <tr *ngFor="let fixture of fixtures">
+        <td>{{fixture.fixtureId }}</td>
+        <td>{{fixture.fixtureDate | date: "d-MMM-yyy, h:mm a"}}</td>
+        <td>{{fixture.venue}}</td>
+    </tr>
+</table>
+
+<div *ngIf="this.fixtures.length != 0" class="container">
+    <label for="fixtureId">Select Fixture Id</label>
+    <input type="number" id="fixtureId" [(ngModel)]="fixtureId" min="1">
+    <button type="submit" (click)="deleteFixture()">Delete Fixture</button>
+</div>
+
+<ng-template #noDisplay>
+    <h1>There's no future Fixtures</h1>
+</ng-template>

@@ -1,0 +1,18 @@
+<form #registerForm="ngForm" class="container" (ngSubmit)="register(registerForm.form.value)" ngNativeValidate>
+    <label for="name">Name</label>
+    <input type="text" name="name" ngModel #nameField="ngModel" required />
+
+    <label for="email">E-mail</label>
+    <input type="text" name="email" ngModel #emailField="ngModel" required />
+
+    <label for="password">Password</label>
+    <input type="password" name="password" ngModel #passwordField="ngModel" required>
+
+    <label for="userType">User Type</label>
+    <select name="userType" ngModel #userTypeField="ngModel" required>
+        <option value="Player">Player</option>
+        <option value="Manager">Manager</option>
+    </select>
+    
+    <button type="submit">Register Account</button>
+</form>
